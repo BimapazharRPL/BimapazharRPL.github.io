@@ -30,17 +30,43 @@
             <h2>Pendidikan</h2>
             <p>Sekolah di SMKN 1 Karawang (2020 - 2024)</p>
             <p>Sekolah di SMPN 3 Karawang Barat (2016 - 2020)</p>
-            <p class="ukuran400px">Ukuran 400px</p>
-            <p class="ukuran500px">Ukuran 500px</p>
-            <p class="ukuran600px">Ukuran 600px</p>
-            <p class="ukuran700px">Ukuran 700px</p>
-            <p class="ukuran800px">Ukuran 800px</p>
-            <p class="ukuran900px">Ukuran 900px</p>
-            <p class="ukuran1000px">Ukuran 1000px</p>
-            <p class="ukuran1100px">Ukuran 1100px</p>
-            <p class="ukuran1200px">Ukuran 1200px</p>
+            
         </div>
     </div>
+    <h2>Camera Scanner</h2>
+    <video id="video" playsinline></video>
+    <button id="scanBtn">Scan</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('video');
+            const scanBtn = document.getElementById('scanBtn');
+
+            // Minta izin akses ke kamera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    video.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error('Error accessing camera:', error);
+                });
+
+            // Tambahkan event listener untuk tombol pemindaian
+            scanBtn.addEventListener('click', function () {
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+
+                // Ambil gambar dari video
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                // Konversi gambar ke data URL
+                const imageDataUrl = canvas.toDataURL('image/png');
+                
+                // Kirim data URL ke server atau lakukan sesuatu yang diinginkan
+                console.log('Scanned Image Data URL:', imageDataUrl);
+            });
+        });
+    </script>
     <style>
         body {
     margin: 0;
@@ -105,6 +131,29 @@
     li {
         margin-bottom: 8px;
     }
+    video {
+    width: 100%;
+    min-width: 400px;
+    margin: 20px auto;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+button {
+    background-color: #4caf50;
+    /* margin: 0px auto; */
+    /* margin-left: 50rem; */
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
     .ukuran400px, .ukuran500px ,.ukuran600px,.ukuran700px,.ukuran800px,.ukuran900px,.ukuran1000px,.ukuran1100px,.ukuran1200px {
         display: none;
     }
@@ -169,6 +218,10 @@
         .ukuran1200px {
             display: none;
         }
+        .profile-container {
+        /* max-width: 300px; */
+        background-color: rgb(59, 153, 241);
+        }
     }
     @media only screen and (max-width: 600px) {
         .ukuran400px {
@@ -200,6 +253,7 @@
         }
         .profile-container {
         max-width: 400px;
+        background-color: rgb(59, 241, 180);
         }
     }
     @media only screen and (max-width: 700px) {
@@ -230,6 +284,10 @@
         .ukuran1200px {
             display: none;
         }
+        .profile-container {
+        /* max-width: 300px; */
+        background-color: rgb(183, 59, 241);
+        }
     }
     @media only screen and (max-width: 800px) {
         .ukuran400px {
@@ -258,6 +316,10 @@
         }
         .ukuran1200px {
             display: none;
+        }
+        .profile-container {
+        /* max-width: 300px; */
+        background-color: rgb(43, 69, 94);
         }
     }
     @media only screen and (max-width: 900px) {
@@ -288,6 +350,10 @@
         .ukuran1200px {
             display: none;
         }
+        .profile-container {
+        /* max-width: 300px; */
+        background-color: rgb(255, 126, 238);
+        }
     }
     @media only screen and (max-width: 1000px) {
         .ukuran400px {
@@ -317,6 +383,10 @@
         .ukuran1200px {
             display: none;
         }
+        .profile-container {
+        /* max-width: 300px; */
+        background-color: rgb(187, 203, 204);
+        }
     }
     @media only screen and (max-width: 1100px) {
         .ukuran400px {
@@ -345,6 +415,10 @@
         }
         .ukuran1200px {
             display: none;
+        }
+        .profile-container {
+        /* max-width: 300px; */
+        background-color: rgb(163, 249, 255);
         }
     }
     @media only screen and (max-width: 1200px) {
